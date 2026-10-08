@@ -17,7 +17,9 @@ Careerly helps job seekers understand their skills, discover relevant opportunit
 
 ## 🌐 Live Demo
 
-**Coming soon.** The Vercel link will be added after the frontend, Laravel API, and database are deployed and connected.
+[careerly-ai-career-platform.vercel.app](https://careerly-ai-career-platform.vercel.app/)
+
+The deployed site currently opens the Careerly dashboard in preview mode. Login, resume uploads, and other account features require the Laravel API and database to be deployed and connected.
 
 ---
 
@@ -134,7 +136,7 @@ Restart the application after changing the configuration. Never commit `.env` fi
 
 The repository includes Docker Compose configuration for the frontend, Laravel API, MySQL, queue worker, and scheduler. Public deployment requires a server or platform that supports Docker Compose, HTTPS, and persistent storage.
 
-Careerly can also use Vercel for the Vite frontend. The Laravel API and SQL database must be hosted separately on a PHP-capable service. Configure a Vercel rewrite for `/api/*` to the deployed Laravel API so browser sessions continue to use the same site origin. The Vercel URL will be added here once the complete application is live.
+Careerly can also use Vercel for the Vite frontend. The Laravel API and SQL database must be hosted separately on a PHP-capable service. Configure a Vercel rewrite for `/api/*` to the deployed Laravel API so browser sessions continue to use the same site origin. The live demo link above points to the frontend; connect the API and database before enabling account features for production users.
 
 For Docker deployment, copy `deploy/env.production.example` to `deploy/.env.production`, replace the example values, build the services, generate an application key, and start the stack:
 
@@ -160,7 +162,7 @@ Back up both the database and the `careerly-resumes` volume. Database backups al
 
 ## 📸 Preview
 
-Screenshots and the live demo link will be added after the complete application is deployed.
+Explore the deployed dashboard in preview mode at the [live demo](https://careerly-ai-career-platform.vercel.app/).
 
 ---
 
