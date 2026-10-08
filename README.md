@@ -1,122 +1,121 @@
 <div align="center">
 
-# Careerly
+# 💼 Careerly
 
-### AI Career Platform
+> AI Career Platform built with **React**, **TypeScript**, **Vite**, **Laravel**, **Tailwind CSS**, and **SQL**.
 
-**Kenali potensi CV, temukan peluang kerja yang relevan, dan kelola langkah karier dalam satu ruang kerja.**
+Careerly helps job seekers understand their skills, discover relevant opportunities, and organize their next career steps.
 
-Careerly adalah aplikasi full-stack untuk membantu pencari kerja memahami profil profesional dan mengeksplorasi kecocokan dengan lowongan.
-
-![React](https://img.shields.io/badge/React-19-149eca?style=flat-square&logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=flat-square&logo=typescript&logoColor=white)
-![Laravel](https://img.shields.io/badge/Laravel-13-f9322c?style=flat-square&logo=laravel&logoColor=white)
-![Database](https://img.shields.io/badge/Database-SQLite%20%7C%20MySQL-4479a1?style=flat-square&logo=mysql&logoColor=white)
+![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-13-f9322c?style=for-the-badge&logo=laravel&logoColor=white)
+![Database](https://img.shields.io/badge/SQL-SQLite%20%7C%20MySQL-4479a1?style=for-the-badge&logo=mysql&logoColor=white)
 
 </div>
 
 ---
 
-## Daftar Isi
+## 🌐 Live Demo
 
-- [Gambaran Umum](#gambaran-umum)
-- [Fitur Utama](#fitur-utama)
-- [Teknologi](#teknologi)
-- [Cara Kerja Analisis](#cara-kerja-analisis)
-- [Menjalankan Secara Lokal](#menjalankan-secara-lokal)
-- [Menggunakan MySQL](#menggunakan-mysql)
-- [Deploy dengan Docker](#deploy-dengan-docker)
-- [REST API](#rest-api)
-- [Struktur Project](#struktur-project)
-- [Privasi dan Batasan](#privasi-dan-batasan)
-- [Lisensi](#lisensi)
+**Coming soon.** The Vercel link will be added after the frontend, Laravel API, and database are deployed and connected.
 
-## Gambaran Umum
+---
 
-Careerly menggabungkan analisis CV, pencocokan keterampilan dengan lowongan, dan pelacakan lamaran. Pengguna dapat melihat dashboard dalam mode pratinjau, lalu masuk atau membuat akun saat ingin mengunggah CV. Setiap akun memiliki ruang kerja dan berkas CV privat.
+## 📖 Overview
 
-Antarmuka tersedia dalam Bahasa Indonesia dan Bahasa Inggris. Proyek ini dibuat sebagai portofolio full-stack menggunakan React, TypeScript, Laravel, dan database SQL.
+Careerly is a full-stack career workspace and portfolio project. It analyzes resume skills, compares them with job requirements, and helps users keep track of saved opportunities and applications.
 
-## Fitur Utama
+The application includes a bilingual interface in Indonesian and English. Users can explore the dashboard in preview mode and create an account when they are ready to upload a resume. Each account has a private workspace and private resume storage.
 
-### Analisis CV dan kecocokan kerja
+---
 
-- Unggah CV berformat PDF atau DOCX hingga 10 MB.
-- Ekstrak teks CV di backend Laravel dan deteksi keterampilan yang dapat ditinjau serta diedit.
-- Tampilkan skor CV, ringkasan, kekuatan, dan saran perbaikan.
-- Bandingkan keterampilan dengan lowongan dan urutkan hasil berdasarkan tingkat kecocokan.
-- Saring lowongan berdasarkan lokasi kerja remote, hybrid, atau di kantor, jenis pekerjaan, pencarian, dan ambang kecocokan.
+## ✨ Features
 
-### Ruang kerja karier
+- Resume upload for PDF and DOCX files up to 10 MB
+- Resume skill extraction, editable skill profiles, score, summary, and improvement suggestions
+- Job matching based on skills and career interests
+- Job filters for remote, hybrid, and on-site roles, employment type, search, match threshold, and sorting
+- Saved jobs and application status tracking
+- User registration, login, logout, and password recovery
+- Private workspaces and resume files for each account
+- Profile, preferences, in-app notifications, and career development plans
+- Daily job alerts and weekly career summaries when configured
+- Resume history, workspace export to JSON, and retry for database synchronization
+- Optional OpenAI analysis with explicit consent before resume text is sent
+- Indonesian and English interface
+- SQLite for local development and MySQL for deployment
 
-- Simpan lowongan, lihat detailnya, dan tandai posisi yang sedang dilamar.
-- Kelola profil, preferensi, notifikasi, dan rencana pengembangan karier.
-- Lihat riwayat skor, ekspor data ruang kerja ke JSON, dan coba kembali sinkronisasi jika diperlukan.
-- Atur pemberitahuan lowongan harian dan ringkasan karier mingguan.
+---
 
-### Akun dan pengaturan
+## 🛠️ Tech Stack
 
-- Daftar, masuk, keluar, dan pulihkan kata sandi.
-- Pisahkan ruang kerja serta berkas CV untuk setiap akun.
-- Uji konfigurasi email dan SMTP dari pengaturan.
-- Gunakan SQLite untuk pengembangan lokal atau MySQL untuk deployment.
-
-## Teknologi
-
-| Area | Teknologi |
+| Technology | Description |
 | --- | --- |
-| Frontend | React 19, TypeScript 6, Vite 8 |
-| UI | Tailwind CSS 4, Framer Motion, Lucide React, Recharts |
-| Backend | Laravel 13, PHP 8.3+ |
-| Database | SQLite atau MySQL |
-| Pemrosesan CV | `smalot/pdfparser`, PHP ZipArchive, DOM/XML |
-| Deployment | Docker Compose, Nginx, MySQL |
+| React 19 | Frontend library |
+| TypeScript 6 | Application language |
+| Vite 8 | Frontend build tool and development server |
+| Tailwind CSS 4 | Utility-first styling |
+| Framer Motion | Interface animations |
+| Lucide React | Icon library |
+| Recharts | Dashboard charts |
+| Laravel 13 | REST API and application backend |
+| SQLite / MySQL | Relational data storage |
+| Docker Compose / Nginx | Containerized deployment |
 
-## Cara Kerja Analisis
+---
 
-Analisis dasar berjalan dengan aturan aplikasi dan tidak memerlukan API AI. Skor dimulai dari 35, bertambah 5 poin untuk setiap keterampilan yang dikenali, dan bertambah 15 poin jika CV memuat bagian pengalaman, pendidikan, atau proyek. Skor maksimum adalah 100.
+## 📂 Project Structure
 
-Integrasi OpenAI bersifat opsional dan tidak aktif secara default. Jika API key dikonfigurasi, teks CV hanya dikirim untuk analisis AI setelah pengguna memberikan persetujuan pada saat mengunggah. Teks CV mentah tidak disimpan ke database aplikasi.
+```text
+careerly-ai-career-platform/
+├── backend/                 # Laravel API, database migrations, and private storage
+├── deploy/                  # Docker, Nginx, and production environment example
+├── public/                  # Static assets
+├── scripts/                 # Local development launcher
+├── src/                     # React application
+│   └── App.tsx               # Career dashboard and API integration
+├── Dockerfile.api
+├── Dockerfile.web
+├── docker-compose.yml
+├── package.json
+└── README.md
+```
 
-> Skor dan kecocokan merupakan perkiraan berbasis aturan serta kata kunci. Hasilnya bukan penilaian perekrut dan tidak menjamin panggilan wawancara atau penerimaan kerja.
+---
 
-## Menjalankan Secara Lokal
+## 🚀 Installation
 
-### Persyaratan
+### Requirements
 
-- Node.js dan npm
-- PHP 8.3 atau lebih baru
+- Node.js and npm
+- PHP 8.3 or later
 - Composer
-- Ekstensi PHP `pdo_sqlite`, `zip`, `xml`, `mbstring`, dan `fileinfo`
-- Ekstensi `pdo_mysql` jika menggunakan MySQL
+- PHP extensions: `pdo_sqlite`, `zip`, `xml`, `mbstring`, and `fileinfo`
+- `pdo_mysql` when using MySQL
 
-### Langkah
+### Run locally
 
-1. Unduh dan ekstrak project, lalu buka foldernya di VS Code.
-2. Buka terminal di folder utama project.
-3. Pasang dependency frontend:
+Clone the repository:
 
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/AhmadTibyanHakim77/careerly-ai-career-platform.git
+cd careerly-ai-career-platform
+```
 
-4. Jalankan aplikasi:
+Install frontend dependencies and start the application:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm install
+npm run dev
+```
 
-5. Buka alamat lokal yang muncul di terminal.
+Open the local URL printed in the terminal. The development launcher prepares the Laravel API, creates local configuration, runs migrations and seeders, and starts the API, Vite, and scheduler. Press `Ctrl+C` in the terminal to stop the services.
 
-Perintah `npm run dev` menyiapkan dependency Laravel jika diperlukan, membuat konfigurasi lokal dan kunci aplikasi, menjalankan migrasi serta seeder, kemudian memulai API Laravel, Vite, dan scheduler. Tekan `Ctrl+C` di terminal untuk menghentikan layanan.
+SQLite is used by default. Local environment files and the database are created as needed and must not be committed. Use `npm run dev`; Live Server or VS Code's **Go Live** does not start the Laravel backend.
 
-Database SQLite lokal dibuat di `backend/database/database.sqlite`. Konfigurasi `backend/.env` dibuat dari `backend/.env.example`. Jangan mengunggah file `.env` atau kredensial ke GitHub.
+### Use MySQL
 
-> Gunakan `npm run dev` untuk menjalankan aplikasi lengkap. Ekstensi Live Server atau tombol **Go Live** hanya menyajikan file statis dan tidak menjalankan backend Laravel.
-
-## Menggunakan MySQL
-
-Buat database MySQL, jalankan aplikasi satu kali agar `backend/.env` dibuat, lalu sesuaikan konfigurasi database berikut:
+Create a MySQL database and update the database values in `backend/.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -124,90 +123,67 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=careerly
 DB_USERNAME=root
-DB_PASSWORD=
+DB_PASSWORD=your-database-password
 ```
 
-Simpan perubahan dan mulai ulang aplikasi dengan `npm run dev`. Jangan commit kata sandi database atau file `.env`.
+Restart the application after changing the configuration. Never commit `.env` files or database credentials.
 
-## Deploy dengan Docker
+---
 
-Docker Compose menyiapkan frontend, Laravel API, MySQL, queue worker, dan scheduler. Aplikasi web menggunakan port `8080` secara default. Untuk penggunaan publik, sediakan domain, HTTPS, reverse proxy, dan penyimpanan persisten pada server atau platform yang mendukung Docker Compose v2.
+## 🌍 Deployment
 
-### Konfigurasi awal
+The repository includes Docker Compose configuration for the frontend, Laravel API, MySQL, queue worker, and scheduler. Public deployment requires a server or platform that supports Docker Compose, HTTPS, and persistent storage.
 
-1. Salin `deploy/env.production.example` menjadi `deploy/.env.production`.
-2. Isi domain, kata sandi database yang kuat, dan konfigurasi layanan yang diperlukan. Jangan unggah file `.env.production`.
-3. Bangun image dan buat kunci Laravel:
+Careerly can also use Vercel for the Vite frontend. The Laravel API and SQL database must be hosted separately on a PHP-capable service. Configure a Vercel rewrite for `/api/*` to the deployed Laravel API so browser sessions continue to use the same site origin. The Vercel URL will be added here once the complete application is live.
 
-   ```bash
-   docker compose --env-file deploy/.env.production build
-   docker compose --env-file deploy/.env.production run --rm --no-deps --entrypoint php api artisan key:generate --show
-   ```
-
-4. Salin kunci yang dihasilkan ke nilai `APP_KEY` di `deploy/.env.production`, lalu mulai layanan:
-
-   ```bash
-   docker compose --env-file deploy/.env.production up -d
-   docker compose --env-file deploy/.env.production ps
-   ```
-
-Untuk melihat log layanan:
+For Docker deployment, copy `deploy/env.production.example` to `deploy/.env.production`, replace the example values, build the services, generate an application key, and start the stack:
 
 ```bash
-docker compose --env-file deploy/.env.production logs -f api web scheduler
+cp deploy/env.production.example deploy/.env.production
+# Edit deploy/.env.production and replace all example values
+docker compose --env-file deploy/.env.production build
+docker compose --env-file deploy/.env.production run --rm --no-deps --entrypoint php api artisan key:generate --show
 ```
 
-Migrasi dan seeder dijalankan saat API pertama kali dimulai. Sebelum pembaruan, cadangkan database dan volume `careerly-resumes`. Backup database saja tidak mencakup berkas CV. Jangan gunakan `docker compose down -v` pada instalasi berisi data karena perintah tersebut menghapus volume.
+Copy the generated key into `APP_KEY` in `deploy/.env.production`, then run:
 
-Untuk deployment publik, isi `APP_URL` dengan domain HTTPS yang benar, aktifkan `SESSION_SECURE_COOKIE=true`, gunakan rahasia unik, dan uji pendaftaran, unggah CV, pengiriman email, serta pemulihan backup. Email reset kata sandi dan notifikasi email memerlukan SMTP. `OPENAI_API_KEY` opsional; skor dasar dan pencocokan tetap dapat digunakan tanpanya.
-
-## REST API
-
-API menggunakan sesi Laravel dan token CSRF untuk permintaan browser. Endpoint workspace, lowongan, email uji, dan CV memerlukan autentikasi.
-
-| Method | Endpoint | Keterangan |
-| --- | --- | --- |
-| `GET` | `/api/health` | Status API, database, dan konfigurasi AI |
-| `GET` | `/api/auth/csrf` | Memulai sesi dan memperoleh token CSRF |
-| `POST` | `/api/auth/register` | Membuat akun dan ruang kerja privat |
-| `POST` | `/api/auth/login` | Membuka sesi pengguna |
-| `POST` | `/api/auth/logout` | Menutup sesi pengguna |
-| `POST` | `/api/auth/forgot-password` | Meminta tautan pemulihan kata sandi |
-| `POST` | `/api/auth/reset-password` | Mengatur ulang kata sandi |
-| `GET` / `PUT` | `/api/workspace` | Membaca atau menyimpan ruang kerja |
-| `GET` | `/api/jobs` | Memuat lowongan dan menghitung kecocokan |
-| `POST` / `DELETE` | `/api/resumes` | Mengunggah, menganalisis, atau menghapus CV |
-| `POST` | `/api/account/test-email` | Menguji konfigurasi email |
-
-## Struktur Project
-
-```text
-careerly/
-├── backend/                 # API Laravel, migrasi, seeder, dan penyimpanan privat
-├── deploy/                  # Konfigurasi Docker, Nginx, dan contoh environment produksi
-├── scripts/dev.mjs          # Launcher pengembangan frontend dan backend
-├── src/App.tsx              # Dashboard React dan integrasi API
-├── Dockerfile.api
-├── Dockerfile.web
-├── docker-compose.yml
-└── README.md
+```bash
+docker compose --env-file deploy/.env.production up -d
+docker compose --env-file deploy/.env.production ps
 ```
 
-## Privasi dan Batasan
+Set `APP_URL` to the production HTTPS URL, enable `SESSION_SECURE_COOKIE=true`, and use unique production secrets. SMTP is required for password recovery and email notifications. `OPENAI_API_KEY` is optional; rule-based scoring and skill matching work without it.
 
-- Berkas CV disimpan pada disk privat Laravel dan dipisahkan per akun. Teks hasil ekstraksi digunakan untuk analisis, lalu tidak disimpan sebagai teks CV di database.
-- Analisis AI dinonaktifkan secara default. Jika pengguna mengaktifkannya, pemrosesan tetap bergantung pada konfigurasi dan kebijakan retensi penyedia AI.
-- `MAIL_MAILER=log` adalah konfigurasi lokal awal. Untuk mengirim email sungguhan, isi pengaturan SMTP di environment backend.
-- Lowongan langsung berasal dari provider eksternal Arbeitnow. Ketersediaan dapat berubah dan hasil saat ini cenderung berisi posisi Eropa atau remote. Periksa lokasi, kelayakan, dan status lowongan di situs sumber sebelum melamar.
-- Sampel lowongan lokal diberi label dan bukan lowongan terverifikasi.
-- Untuk produksi, aktifkan HTTPS, batasi CORS ke domain yang benar, atur SMTP, serta buat backup berkala untuk database dan berkas CV.
+Back up both the database and the `careerly-resumes` volume. Database backups alone do not include uploaded resume files. Do not use `docker compose down -v` on a deployment containing data because it removes persistent volumes.
 
-## Lisensi
+---
 
-Careerly menggunakan lisensi proprietary **All Rights Reserved**. Source code tersedia untuk ditinjau sebagai portofolio. Penggunaan, penyalinan, perubahan, penerbitan ulang, distribusi, atau pemakaian project memerlukan izin tertulis dari pemilik hak cipta. Baca [`LICENSE`](LICENSE) untuk ketentuan lengkap.
+## 📸 Preview
 
-Repository publik tetap memungkinkan orang melihat dan mengunduh source code. Jika akses harus disetujui sebelum source dapat dilihat, ubah visibilitas repository menjadi **private** dan undang hanya kolaborator yang disetujui.
+Screenshots and the live demo link will be added after the complete application is deployed.
 
-## Pengembang
+---
 
-**Ahmad Tibyan Hakim** · [GitHub](https://github.com/AhmadTibyanHakim77)
+## 🔐 Privacy and Matching Notes
+
+- Resume files are stored in Laravel's private storage and separated by account. Extracted resume text is used during analysis and is not stored as raw resume text in the application database.
+- OpenAI analysis is disabled by default. Resume text is sent only when the user enables the integration and gives consent during upload. Third-party provider retention policies still apply.
+- Job matching is an estimate based on skills and keywords. It is not a hiring decision and does not guarantee an interview or job offer.
+- Live jobs are supplied by Arbeitnow and may be unavailable or focused on European and remote positions. Verify location, eligibility, and availability on the employer's application page.
+- Locally seeded example jobs are labeled and are not verified vacancies.
+
+---
+
+## 👨‍💻 Developer
+
+**Ahmad Tibyan Hakim**
+
+GitHub: [AhmadTibyanHakim77](https://github.com/AhmadTibyanHakim77)
+
+---
+
+## 📄 License
+
+This project is proprietary and distributed under **All Rights Reserved**. The source is available for portfolio review. Any use, copying, modification, publication, or distribution requires prior written permission from the copyright holder. See [`LICENSE`](LICENSE) for the full terms.
+
+Public repositories can still be viewed and downloaded. To approve access before others can view the source, change the repository visibility to **Private** and invite only approved collaborators.
