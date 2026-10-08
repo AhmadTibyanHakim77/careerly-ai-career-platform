@@ -1,0 +1,119 @@
+name: careerly
+
+x-app-environment: &app-environment
+  APP_NAME: Careerly
+  APP_ENV: production
+  APP_KEY: ${APP_KEY:-}
+  APP_DEBUG: "false"
+  APP_URL: ${APP_URL:-http://localhost:8080}
+  FRONTEND_URL: ${APP_URL:-http://localhost:8080}
+  LOG_CHANNEL: stderr
+  LOG_LEVEL: warning
+  DB_CONNECTION: mysql
+  DB_HOST: db
+  DB_PORT: "3306"
+  DB_DATABASE: ${DB_DATABASE:-careerly}
+  DB_USERNAME: ${DB_USERNAME:-careerly}
+  DB_PASSWORD: ${DB_PASSWORD:-change-this-database-password}
+  SESSION_DRIVER: database
+  SESSION_SECURE_COOKIE: ${SESSION_SECURE_COOKIE:-true}
+  CACHE_STORE: database
+  QUEUE_CONNECTION: database
+  FILESYSTEM_DISK: local
+  MAIL_MAILER: ${MAIL_MAILER:-smtp}
+  MAIL_SCHEME: ${MAIL_SCHEME:-tls}
+  MAIL_HOST: ${MAIL_HOST:-smtp.example.com}
+  MAIL_PORT: ${MAIL_PORT:-587}
+  MAIL_USERNAME: ${MAIL_USERNAME:-}
+  MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+  MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-hello@example.com}
+  MAIL_FROM_NAME: Careerly
+  CORS_ALLOWED_ORIGINS: ${APP_URL:-http://localhost:8080}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5-mini}
+  ARBEITNOW_JOBS_URL: ${ARBEITNOW_JOBS_URL:-https://www.arbeitnow.com/api/job-board-api}
+
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-careerly}
+      MYSQL_USER: ${DB_USERNAME:-careerly}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-change-this-database-password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change-this-root-password}
+    volumes:
+      - careerly-database:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping --host=127.0.0.1 --user=root --password=\"$${MYSQL_ROOT_PASSWORD}\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    environment:
+      <<: *app-environment
+      RUN_MIGRATIONS: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - careerly-resumes:/var/www/html/storage/app/private
+    healthcheck:
+      test: ["CMD", "php", "artisan", "about", "--only=environment"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/api/health >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    command: ["php", "artisan", "queue:work", "--sleep=3", "--tries=3", "--timeout=90"]
+    environment:
+      <<: *app-environment
+      RUN_MIGRATIONS: "false"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    command: ["php", "artisan", "schedule:work"]
+    environment:
+      <<: *app-environment
+      RUN_MIGRATIONS: "false"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  careerly-database:
+  careerly-resumes:

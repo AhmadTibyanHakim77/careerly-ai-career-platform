@@ -1,0 +1,25 @@
+FROM php:8.4-fpm-bookworm
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libonig-dev libxml2-dev libzip-dev unzip \
+    && docker-php-ext-install mbstring dom pdo_mysql xml zip opcache \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+COPY backend/ ./
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && printf 'upload_max_filesize=12M\npost_max_size=14M\nmemory_limit=256M\n' > "$PHP_INI_DIR/conf.d/careerly.ini" \
+    && composer install --no-dev --no-interaction --prefer-dist --no-progress --optimize-autoloader \
+    && mkdir -p storage/app/private storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache
+
+COPY deploy/api-entrypoint.sh /usr/local/bin/careerly-entrypoint
+RUN chmod 0755 /usr/local/bin/careerly-entrypoint
+
+USER www-data
+EXPOSE 9000
+ENTRYPOINT ["careerly-entrypoint"]
+CMD ["php-fpm", "-F"]
